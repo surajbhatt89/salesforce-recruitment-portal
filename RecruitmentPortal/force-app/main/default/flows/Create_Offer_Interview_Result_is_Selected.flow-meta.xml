@@ -30,15 +30,21 @@
         <locationX>0</locationX>
         <locationY>0</locationY>
         <inputAssignments>
+            <field>Approval_Status__c</field>
+            <value>
+                <stringValue>Not Submitted</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
             <field>Candidate__c</field>
             <value>
-                <elementReference>$Record__Prior.Candidate__r.Name</elementReference>
+                <elementReference>$Record__Prior.Candidate__r.Id</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
             <field>Job_Opening__c</field>
             <value>
-                <elementReference>$Record__Prior.Job_Opening__r.Name</elementReference>
+                <elementReference>$Record.Job_Opening__c</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -47,36 +53,22 @@
                 <stringValue>Offer Letter</stringValue>
             </value>
         </inputAssignments>
+        <inputAssignments>
+            <field>Status__c</field>
+            <value>
+                <stringValue>Draft</stringValue>
+            </value>
+        </inputAssignments>
         <object>Offer__c</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordCreates>
-    <recordLookups>
-        <name>Get_Job_Opening_Records</name>
-        <label>Get Job Opening Records</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>Create_Offer</targetReference>
-        </connector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>Salary_Range__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>$Record.Job_Opening__c</elementReference>
-            </value>
-        </filters>
-        <getFirstRecordOnly>true</getFirstRecordOnly>
-        <object>Job_Opening__c</object>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-    </recordLookups>
     <start>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Get_Job_Opening_Records</targetReference>
+            <targetReference>Create_Offer</targetReference>
         </connector>
+        <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
         <filterLogic>and</filterLogic>
         <filters>
             <field>Result__c</field>
